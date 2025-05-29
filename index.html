@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebSocket Test</title>
+</head>
+<body>
+    <h1>WebSocket Test</h1>
+    <input id="message" type="text" placeholder="Enter message" />
+    <button onclick="sendMessage()">Send</button>
+    <pre id="log"></pre>
+
+    <script>
+        const ws = new WebSocket("ws://localhost:8080/ws");
+        ws.onmessage = (event) => {
+            document.getElementById("log").textContent += "Received: " + event.data + "\n";
+        };
+        function sendMessage() {
+            const msg = document.getElementById("message").value;
+            ws.send(msg);
+        }
+    </script>
+</body>
+</html>
